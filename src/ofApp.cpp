@@ -3,11 +3,8 @@
 #include <sstream>
 
 //--------------------------------------------------------------
-void ofApp::setup(){
-    camWidth = 640;
-    camHeight = 480;
-    
-    cam.setup(camWidth, camHeight);
+void ofApp::setup(){    
+    cam.setup(ofGetWidth(), ofGetHeight());
 
     net = cv::dnn::readNetFromDarknet(
         ofToDataPath("cross-hands-tiny-prn.cfg"),
@@ -17,8 +14,8 @@ void ofApp::setup(){
     net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
 
     handIcon.load("hand.png");
-    // resize the hand icon
-    handIcon.resize(camWidth/8, camHeight/6);
+    // resize the hand icon based on window size
+    handIcon.resize(ofGetWidth() / 16, ofGetHeight() / 9);
 
     confidenceThreshold = 0.3;
     handFoundTime = 0;
@@ -29,8 +26,8 @@ void ofApp::setup(){
         float buttonHeight = 50;
         float centerX = ofGetWidth() / 2;
         float startY = ofGetHeight() / 2;
-        playGameButton.set(centerX - buttonWidth / 2, startY - 60, buttonWidth, buttonHeight);
-        createChartButton.set(centerX - buttonWidth / 2, startY + 10, buttonWidth, buttonHeight);
+        playGameButton.set(centerX - buttonWidth / 2, startY - 100, buttonWidth, buttonHeight);
+        createChartButton.set(centerX - buttonWidth / 2, startY + 50, buttonWidth, buttonHeight);
 
         isHoveringPlayGame = false;
         isHoveringCreateChart = false;
@@ -125,6 +122,8 @@ void ofApp::draw(){
         if (currentMode == MENU){
             // Draw menu items
             ofSetColor(255, 255, 255, 150); // Semi-transparent white
+            ofNoFill();
+            ofSetLineWidth(5);
             ofDrawRectangle(playGameButton);
             ofDrawRectangle(createChartButton);
 //            ofSetColor(0);
@@ -148,9 +147,9 @@ void ofApp::draw(){
                 }
 
                 // Draw progress circle
-                ofNoFill();
+//                ofNoFill();
 //                ofSetColor(0, 255, 0);
-                ofSetLineWidth(5);
+//                ofSetLineWidth(5);
                 ofDrawCircle(centerX, centerY, radius);
                 // Draw arc representing progress
                 ofPath path;

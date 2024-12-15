@@ -53,8 +53,8 @@ class ofApp : public ofBaseApp{
 //        float handY;
         ofRectangle handIconRect;
     
-        int camWidth;
-        int camHeight;
+//        int camWidth;
+//        int camHeight;
     
             // Menu items
             ofRectangle playGameButton;
