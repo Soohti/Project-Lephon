@@ -6,6 +6,7 @@
 #include "ofxGui.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
+#include <filesystem>
 
 struct ChartEntry {
     float hitTime; // in milliseconds
@@ -38,9 +39,12 @@ class ofApp : public ofBaseApp{
 		void mouseEntered(int x, int y) override;
 		void mouseExited(int x, int y) override;
 		void windowResized(int w, int h) override;
-		void dragEvent(ofDragInfo dragInfo) override;
-		void gotMessage(ofMessage msg) override;
+        void initializeSongSelection();
+        void handleSongSelection();
+        void drawSongSelection();
+        void drawHoverProgress(float progress, float x, float y, float radius);
     
+    private:
         ofVideoGrabber cam;
         ofImage mirroredFrame;
         ofImage handIcon;
@@ -48,6 +52,9 @@ class ofApp : public ofBaseApp{
         float confidenceThreshold;
         float handFoundTime;
         float handDuration;
+
+        float buttonWidth;
+        float buttonHeight;
         
 //        float handX;
 //        float handY;
@@ -65,6 +72,15 @@ class ofApp : public ofBaseApp{
             float hoverDuration; // Time in seconds to trigger action
 
             // Current mode
-            enum Mode { MENU, GAME, CREATE_CHART };
+            enum Mode { MENU, GAME, CREATE_CHART, SONG_SELECTION };
             Mode currentMode;
+
+        // Variables for song selection
+        std::vector<std::string> mp4Files;
+        std::vector<ofRectangle> mp4Buttons;
+        std::vector<bool> isHoveringOverSong;
+        std::vector<ofImage> coverImages;
+        int selectedSongIndex;
+        ofVideoPlayer videoPlayer;
+        ofImage currentBackgroundImage;
 };
