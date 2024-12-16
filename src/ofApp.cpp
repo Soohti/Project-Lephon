@@ -1,10 +1,9 @@
 #include "ofApp.h"
-#include <fstream>
-#include <sstream>
-#include <filesystem>
+#include "MainMenu.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    BaseMode *mainMenu = new MainMenu();
     cam.setup(ofGetWidth(), ofGetHeight());
 
     net = cv::dnn::readNetFromDarknet(
