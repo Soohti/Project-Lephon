@@ -17,7 +17,7 @@ public:
 
 private:
     ofVideoPlayer videoPlayer;
-    std::vector<Note*> notes;
+    std::vector<Note*> allNotes;
     std::ifstream inFile;
 
     ofRectangle* handIconRect;
