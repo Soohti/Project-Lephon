@@ -3,13 +3,12 @@
 
 class MainMenu : public BaseMode {
 public:
-    MainMenu();
+    MainMenu(ofRectangle* handIconRect);
     ~MainMenu();
 
     void update() override;
     void draw() override;
-    void keyPressed(int key) override;
-    void keyReleased(int key) override;
+    bool streamWebcam() override;
 
 private:
     ofRectangle playGameButton;
@@ -19,9 +18,5 @@ private:
     float hoverStartTime;
     float hoverDuration;
 
-    ofImage handIcon;
-    ofRectangle handIconRect;
-    float confidenceThreshold;
-
-    BaseMode* nextMode;
+    ofRectangle* handIconRect;
 };
