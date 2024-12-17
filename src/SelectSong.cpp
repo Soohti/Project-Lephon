@@ -58,11 +58,9 @@ void SelectSong::update() {
                 // Update current background image to the cover image of the hovered song
                 currentBackgroundImage = coverImages[i];
             } else if (ofGetElapsedTimef() - hoverStartTime >= hoverDuration) {
-                if (mode == 1) {
-                    // Play the game
+                if (mode == PlayGame::CODE) {
                     nextMode = new PlayGame(handIconRect, mp4Files[i]);
-                } else if (mode == 2) {
-                    // Create new chart
+                } else if (mode == CreateChart::CODE) {
                     nextMode = new CreateChart(handIconRect, mp4Files[i]);
                 }
                 break;

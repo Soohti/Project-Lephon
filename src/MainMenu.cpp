@@ -1,5 +1,7 @@
 #include "MainMenu.h"
 #include "SelectSong.h"
+#include "PlayGame.h"
+#include "CreateChart.h"
 
 MainMenu::MainMenu(ofRectangle* handIconRect) {
     this->handIconRect = handIconRect;
@@ -26,8 +28,7 @@ void MainMenu::update() {
             isHoveringPlayGame = true;
             hoverStartTime = ofGetElapsedTimef();
         } else if (ofGetElapsedTimef() - hoverStartTime >= hoverDuration) {
-            // Trigger game mode switch
-            nextMode = new SelectSong(handIconRect, 1);
+            nextMode = new SelectSong(handIconRect, PlayGame::CODE);
         }
         isHoveringCreateChart = false;
     } else if (handIconRect->intersects(createChartButton)) {
@@ -35,8 +36,7 @@ void MainMenu::update() {
             isHoveringCreateChart = true;
             hoverStartTime = ofGetElapsedTimef();
         } else if (ofGetElapsedTimef() - hoverStartTime >= hoverDuration) {
-            // Trigger chart creation mode switch
-            nextMode = new SelectSong(handIconRect, 2);
+            nextMode = new SelectSong(handIconRect, CreateChart::CODE);
         }
         isHoveringPlayGame = false;
     } else {

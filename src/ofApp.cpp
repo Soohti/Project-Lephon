@@ -64,7 +64,7 @@ void ofApp::update(){
                 break;
             }
         }
-        // if hand not found for 3 seconds, reset the hand icon position
+        // if hand not found for 1 seconds, reset the hand icon position
         if (ofGetElapsedTimef() - handFoundTime > handDuration){
             handIconRect.set(0, 0, handIcon.getWidth(), handIcon.getHeight());
         }
@@ -86,7 +86,6 @@ void ofApp::draw(){
     }
     
     currentMode->draw();
-    
     // Draw hand icon with full opacity
     ofSetColor(255, 255, 255, 255);
     handIcon.draw(handIconRect);
@@ -94,55 +93,15 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(){
-
+    delete currentMode;
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-
+    currentMode->keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseScrolled(int x, int y, float scrollX, float scrollY){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
+    currentMode->keyReleased(key);
 }
