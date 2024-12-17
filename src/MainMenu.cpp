@@ -1,4 +1,5 @@
 #include "MainMenu.h"
+#include "SelectSong.h"
 
 MainMenu::MainMenu(ofRectangle* handIconRect) {
     this->handIconRect = handIconRect;

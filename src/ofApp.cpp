@@ -1,9 +1,11 @@
 #include "ofApp.h"
+#include "ofxCv.h"
 #include "MainMenu.h"
+
+#include <filesystem>
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    BaseMode *mainMenu = new MainMenu();
     cam.setup(ofGetWidth(), ofGetHeight());
 
     net = cv::dnn::readNetFromDarknet(
@@ -20,21 +22,22 @@ void ofApp::setup(){
     confidenceThreshold = 0.3;
     handFoundTime = 0;
     handDuration = 1.0;
+    
+    currentMode = new MainMenu(&handIconRect);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     cam.update();
-
     if (cam.isFrameNew()){
         // Get and process the frame
-        mirroredFrame.setFromPixels(cam.getPixels());
-        mirroredFrame.mirror(false, true);
-        cv::Mat frame = ofxCv::toCv(mirroredFrame);
-        cv::cvtColor(frame, frame, cv::COLOR_RGB2BGR);
+        camFrame.setFromPixels(cam.getPixels());
+        camFrame.mirror(false, true);
+        cv::Mat handFrame = ofxCv::toCv(camFrame);
+        cv::cvtColor(handFrame, handFrame, cv::COLOR_RGB2BGR);
 
         // Prepare the input blob
-        cv::Mat blob = cv::dnn::blobFromImage(frame, 1/255.0, cv::Size(416, 416), cv::Scalar(), true, false);
+        cv::Mat blob = cv::dnn::blobFromImage(handFrame, 1/255.0, cv::Size(416, 416), cv::Scalar(), true, false);
         net.setInput(blob);
 
         // Forward pass
@@ -48,8 +51,8 @@ void ofApp::update(){
             for (int j = 0; j < outputs[i].rows; ++j, data += outputs[i].cols){
                 float confidence = data[4];
                 if (confidence > confidenceThreshold){
-                    handIconRect.set(data[0] * frame.cols - handIcon.getWidth() / 2,
-                                     data[1] * frame.rows - handIcon.getHeight() / 2,
+                    handIconRect.set(data[0] * handFrame.cols - handIcon.getWidth() / 2,
+                                     data[1] * handFrame.rows - handIcon.getHeight() / 2,
                                      handIcon.getWidth(),
                                      handIcon.getHeight());
                     handFound = true; // Stop after finding one hand
@@ -66,17 +69,26 @@ void ofApp::update(){
             handIconRect.set(0, 0, handIcon.getWidth(), handIcon.getHeight());
         }
     }
+    
+    currentMode->update();
+    BaseMode* nextMode = currentMode->getNextMode();
+    if (nextMode != nullptr){
+        delete currentMode;
+        currentMode = nextMode;
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(255, 255, 255, 150); // Semi-transparent white
-
-    if (mirroredFrame.isAllocated() && currentMode == MENU){
-        mirroredFrame.draw(0, 0);
+    if (currentMode->streamWebcam() && camFrame.isAllocated()){
+        ofSetColor(255, 255, 255, 150); // Semi-transparent white
+        camFrame.draw(0, 0);
     }
-
+    
+    currentMode->draw();
+    
     // Draw hand icon with full opacity
+    ofSetColor(255, 255, 255, 255);
     handIcon.draw(handIconRect);
 }
 

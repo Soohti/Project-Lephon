@@ -1,26 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxOpenCv.h"
 #include "ofxCv.h"
-#include "ofxGui.h"
-#include <opencv2/opencv.hpp>
-#include <opencv2/dnn.hpp>
-#include <filesystem>
-// TODO: optimize includes
-
-struct ChartEntry {
-    float hitTime; // in milliseconds
-    float x;
-    float y;
-    bool hit;
-};
-
-enum class GameMode {
-    Menu,
-    Gameplay,
-    ChartGeneration
-};
+#include "BaseMode.h"
 
 class ofApp : public ofBaseApp{
 
@@ -43,10 +25,13 @@ class ofApp : public ofBaseApp{
     
     private:
         ofVideoGrabber cam;
-        ofImage mirroredFrame;
+        ofImage camFrame;
         ofImage handIcon;
         cv::dnn::Net net;
         float confidenceThreshold;
         float handFoundTime;
         float handDuration;
+        ofRectangle handIconRect;
+    
+        BaseMode* currentMode;
 };

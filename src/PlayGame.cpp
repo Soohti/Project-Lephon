@@ -15,7 +15,7 @@ PlayGame::~PlayGame() {
 void PlayGame::update() {
     videoPlayer.update();
     if (videoPlayer.getIsMovieDone()) {
-        nextMode = new MainMenu(handIconRect);
+//        nextMode = new MainMenu(handIconRect);
     }
 }
 

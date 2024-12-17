@@ -29,6 +29,10 @@
 		"81F3AA9E-B41C-4D83-BA31-3BCFA5B0A948" /* ContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "41442BAF-06EA-44DE-A56D-E861C853F7E5" /* ContourFinder.cpp */; };
 		"82CFF480-56C6-4D3F-B2BF-556EEF30D499" /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "AD8ADA88-A64E-4995-A2FA-B43423C2A663" /* ofxColorPicker.cpp */; };
 		89762DC82D10A4DF00000B94 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89762DC72D10A4DF00000B94 /* MainMenu.cpp */; };
+		89E6EE1F2D11B7ED00BBC69A /* CreateChart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */; };
+		89E6EE202D11B7ED00BBC69A /* BaseMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */; };
+		89E6EE212D11B7ED00BBC69A /* PlayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1C2D11B7ED00BBC69A /* PlayGame.cpp */; };
+		89E6EE222D11B7ED00BBC69A /* SelectSong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1E2D11B7ED00BBC69A /* SelectSong.cpp */; };
 		"9D67455E-CE3F-45B3-8677-5B1BB0BA74C3" /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "4F75DB45-C4AF-412C-903F-756108FDE6DE" /* ofxSliderGroup.cpp */; };
 		"A291E367-F481-4F11-8A87-9B650CDF52EC" /* RunningBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "A6B16EB6-AD5B-4EA4-8B6F-A928835E4EDE" /* RunningBackground.cpp */; };
 		"A9B105C4-7C2A-4D0B-A3B8-5BBDFF9EC399" /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "6143E018-CA53-4093-B16E-571172914110" /* Tracker.cpp */; };
@@ -433,6 +437,13 @@
 		89762DC62D10A48F00000B94 /* MainMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		89762DC72D10A4DF00000B94 /* MainMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
 		"899E3BBF-572B-460F-8F27-99B8FB623E3C" /* Tracker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Tracker.h; path = ../../../addons/ofxCv/libs/ofxCv/include/ofxCv/Tracker.h; sourceTree = SOURCE_ROOT; };
+		89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMode.cpp; sourceTree = "<group>"; };
+		89E6EE192D11B7ED00BBC69A /* CreateChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChart.h; sourceTree = "<group>"; };
+		89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CreateChart.cpp; sourceTree = "<group>"; };
+		89E6EE1B2D11B7ED00BBC69A /* PlayGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayGame.h; sourceTree = "<group>"; };
+		89E6EE1C2D11B7ED00BBC69A /* PlayGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayGame.cpp; sourceTree = "<group>"; };
+		89E6EE1D2D11B7ED00BBC69A /* SelectSong.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectSong.h; sourceTree = "<group>"; };
+		89E6EE1E2D11B7ED00BBC69A /* SelectSong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SelectSong.cpp; sourceTree = "<group>"; };
 		"8A582CF5-9B04-438F-8267-AE0694CBBF3C" /* dist.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = dist.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/dist.h; sourceTree = SOURCE_ROOT; };
 		"8A6BC818-D245-4760-9BBC-61FAC5E53B60" /* neon_utils.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = neon_utils.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv4/opencv2/core/neon_utils.hpp; sourceTree = SOURCE_ROOT; };
 		"8B1DA282-631C-4292-A30B-00E00A85F30E" /* ts.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ts.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ts.hpp; sourceTree = SOURCE_ROOT; };
@@ -2123,6 +2134,13 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */,
+				89E6EE192D11B7ED00BBC69A /* CreateChart.h */,
+				89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */,
+				89E6EE1B2D11B7ED00BBC69A /* PlayGame.h */,
+				89E6EE1C2D11B7ED00BBC69A /* PlayGame.cpp */,
+				89E6EE1D2D11B7ED00BBC69A /* SelectSong.h */,
+				89E6EE1E2D11B7ED00BBC69A /* SelectSong.cpp */,
 				89762DC72D10A4DF00000B94 /* MainMenu.cpp */,
 				89762DC52D10A48F00000B94 /* BaseMode.h */,
 				89762DC62D10A48F00000B94 /* MainMenu.h */,
@@ -2442,6 +2460,10 @@
 				"E8853B6F-95A6-4A62-952E-510F394C946F" /* ofxPanel.cpp in Sources */,
 				"22E845CB-4D71-4879-BE7B-3E7DEDAD1F80" /* ofxSlider.cpp in Sources */,
 				"9D67455E-CE3F-45B3-8677-5B1BB0BA74C3" /* ofxSliderGroup.cpp in Sources */,
+				89E6EE1F2D11B7ED00BBC69A /* CreateChart.cpp in Sources */,
+				89E6EE202D11B7ED00BBC69A /* BaseMode.cpp in Sources */,
+				89E6EE212D11B7ED00BBC69A /* PlayGame.cpp in Sources */,
+				89E6EE222D11B7ED00BBC69A /* SelectSong.cpp in Sources */,
 				"39D542B5-1411-4814-BA98-94D80CE591F1" /* ofxToggle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

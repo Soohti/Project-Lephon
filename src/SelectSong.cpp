@@ -1,4 +1,6 @@
 #include "SelectSong.h"
+#include "PlayGame.h"
+#include "CreateChart.h"
 
 SelectSong::SelectSong(ofRectangle* handIconRect, int mode) {
     this->handIconRect = handIconRect;
@@ -12,6 +14,7 @@ SelectSong::SelectSong(ofRectangle* handIconRect, int mode) {
     coverImages.clear();
     hoverStartTime = 0;
     hoverDuration = 3.0;
+    float buttonWidth = 200, buttonHeight = 50;
     float startY = 200;
     int index = 0;
     for (const auto& entry : fs::directory_iterator(ofToDataPath("songs"))) {
@@ -52,10 +55,12 @@ void SelectSong::update() {
             if (!isHoveringOverSong[i]) {
                 isHoveringOverSong[i] = true;
                 hoverStartTime = ofGetElapsedTimef();
+                // Update current background image to the cover image of the hovered song
+                currentBackgroundImage = coverImages[i];
             } else if (ofGetElapsedTimef() - hoverStartTime >= hoverDuration) {
                 if (mode == 1) {
                     // Play the game
-                    nextMode = new Game(handIconRect, mp4Files[i]);
+                    nextMode = new PlayGame(handIconRect, mp4Files[i]);
                 } else if (mode == 2) {
                     // Create new chart
                     nextMode = new CreateChart(handIconRect, mp4Files[i]);
