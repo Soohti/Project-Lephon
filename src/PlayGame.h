@@ -2,8 +2,8 @@
 #include "BaseMode.h"
 #include "Note.h"
 
-#include <vector>
 #include <fstream>
+#include <vector>
 
 class PlayGame : public BaseMode {
 public:

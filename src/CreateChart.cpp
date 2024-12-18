@@ -1,7 +1,8 @@
 #include "CreateChart.h"
 
-CreateChart::CreateChart(ofRectangle* handIconRect, std::string mp4Path) {
-    this->handIconRect = handIconRect;
+CreateChart::CreateChart(ofRectangle* handIconRect, std::string mp4Path)
+    : handIconRect(handIconRect)
+{
     videoPlayer.load(mp4Path);
     videoPlayer.setLoopState(OF_LOOP_NONE);
     videoPlayer.play();
@@ -10,27 +11,31 @@ CreateChart::CreateChart(ofRectangle* handIconRect, std::string mp4Path) {
     outFile.open(mp4Path.substr(0, mp4Path.size() - 4) + "_gen.txt", std::ios::ate);
 }
 
-CreateChart::~CreateChart() {
+CreateChart::~CreateChart()
+{
     videoPlayer.stop();
     videoPlayer.close();
     outFile.close();
 }
 
-void CreateChart::update() {
+void CreateChart::update()
+{
     videoPlayer.update();
     if (videoPlayer.getIsMovieDone()) {
-//        nextMode = new MainMenu(handIconRect);
+        //        nextMode = new MainMenu(handIconRect);
     }
 }
 
-void CreateChart::draw() {
+void CreateChart::draw()
+{
     ofSetColor(255, 255, 255, 150); // Semi-transparent white
     if (videoPlayer.isLoaded()) {
         videoPlayer.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
 }
 
-void CreateChart::keyPressed(int key) {
+void CreateChart::keyPressed(int key)
+{
     if (key == ' ') {
         if (!holding) {
             holding = true;
@@ -43,7 +48,8 @@ void CreateChart::keyPressed(int key) {
     }
 }
 
-void CreateChart::keyReleased(int key) {
+void CreateChart::keyReleased(int key)
+{
     if (key == ' ') {
         float centerX = handIconRect->getX() + handIconRect->getWidth() / 2;
         float centerY = handIconRect->getY() + handIconRect->getHeight() / 2;

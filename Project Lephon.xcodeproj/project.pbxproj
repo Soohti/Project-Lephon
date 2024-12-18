@@ -30,7 +30,6 @@
 		"82CFF480-56C6-4D3F-B2BF-556EEF30D499" /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "AD8ADA88-A64E-4995-A2FA-B43423C2A663" /* ofxColorPicker.cpp */; };
 		89762DC82D10A4DF00000B94 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89762DC72D10A4DF00000B94 /* MainMenu.cpp */; };
 		89E6EE1F2D11B7ED00BBC69A /* CreateChart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */; };
-		89E6EE202D11B7ED00BBC69A /* BaseMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */; };
 		89E6EE212D11B7ED00BBC69A /* PlayGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1C2D11B7ED00BBC69A /* PlayGame.cpp */; };
 		89E6EE222D11B7ED00BBC69A /* SelectSong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E6EE1E2D11B7ED00BBC69A /* SelectSong.cpp */; };
 		"9D67455E-CE3F-45B3-8677-5B1BB0BA74C3" /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = "4F75DB45-C4AF-412C-903F-756108FDE6DE" /* ofxSliderGroup.cpp */; };
@@ -438,7 +437,6 @@
 		89762DC72D10A4DF00000B94 /* MainMenu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
 		"899E3BBF-572B-460F-8F27-99B8FB623E3C" /* Tracker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Tracker.h; path = ../../../addons/ofxCv/libs/ofxCv/include/ofxCv/Tracker.h; sourceTree = SOURCE_ROOT; };
 		89E60FEA2D11ECA500BBC69A /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMode.cpp; sourceTree = "<group>"; };
 		89E6EE192D11B7ED00BBC69A /* CreateChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChart.h; sourceTree = "<group>"; };
 		89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CreateChart.cpp; sourceTree = "<group>"; };
 		89E6EE1B2D11B7ED00BBC69A /* PlayGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayGame.h; sourceTree = "<group>"; };
@@ -2136,7 +2134,6 @@
 			isa = PBXGroup;
 			children = (
 				89E60FEA2D11ECA500BBC69A /* Note.h */,
-				89E6EE182D11B7ED00BBC69A /* BaseMode.cpp */,
 				89E6EE192D11B7ED00BBC69A /* CreateChart.h */,
 				89E6EE1A2D11B7ED00BBC69A /* CreateChart.cpp */,
 				89E6EE1B2D11B7ED00BBC69A /* PlayGame.h */,
@@ -2463,7 +2460,6 @@
 				"22E845CB-4D71-4879-BE7B-3E7DEDAD1F80" /* ofxSlider.cpp in Sources */,
 				"9D67455E-CE3F-45B3-8677-5B1BB0BA74C3" /* ofxSliderGroup.cpp in Sources */,
 				89E6EE1F2D11B7ED00BBC69A /* CreateChart.cpp in Sources */,
-				89E6EE202D11B7ED00BBC69A /* BaseMode.cpp in Sources */,
 				89E6EE212D11B7ED00BBC69A /* PlayGame.cpp in Sources */,
 				89E6EE222D11B7ED00BBC69A /* SelectSong.cpp in Sources */,
 				"39D542B5-1411-4814-BA98-94D80CE591F1" /* ofxToggle.cpp in Sources */,

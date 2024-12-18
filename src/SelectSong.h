@@ -12,7 +12,7 @@ public:
 private:
     std::vector<std::string> mp4Files;
     std::vector<ofRectangle> mp4Buttons;
-    
+
     std::vector<ofImage> coverImages;
     ofImage currentBackgroundImage;
 

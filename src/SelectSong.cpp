@@ -1,11 +1,11 @@
 #include "SelectSong.h"
-#include "PlayGame.h"
 #include "CreateChart.h"
+#include "PlayGame.h"
 
-SelectSong::SelectSong(ofRectangle* handIconRect, int mode) {
-    this->handIconRect = handIconRect;
-    this->mode = mode;
-    
+SelectSong::SelectSong(ofRectangle* handIconRect, int mode)
+    : handIconRect(handIconRect)
+    , mode(mode)
+{
     // Initialize song selection
     namespace fs = std::filesystem;
     mp4Files.clear();
@@ -47,9 +47,10 @@ SelectSong::SelectSong(ofRectangle* handIconRect, int mode) {
     }
 }
 
-SelectSong::~SelectSong() {}
+SelectSong::~SelectSong() { }
 
-void SelectSong::update() {
+void SelectSong::update()
+{
     for (size_t i = 0; i < mp4Buttons.size(); ++i) {
         if (handIconRect->intersects(mp4Buttons[i])) {
             if (!isHoveringOverSong[i]) {
@@ -71,27 +72,28 @@ void SelectSong::update() {
     }
 }
 
-void SelectSong::draw() {
+void SelectSong::draw()
+{
     // Draw the current background image
     ofSetColor(255, 255, 255, 150); // Semi-transparent white
-    if(currentBackgroundImage.isAllocated()){
+    if (currentBackgroundImage.isAllocated()) {
         currentBackgroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
     // Draw song selection buttons
     ofSetColor(255, 255, 255, 255); // Full opacity
-    for (size_t i = 0; i < mp4Buttons.size(); ++i){
+    for (size_t i = 0; i < mp4Buttons.size(); ++i) {
         ofNoFill();
         ofSetLineWidth(5);
         ofDrawRectangle(mp4Buttons[i]);
         ofDrawBitmapString(mp4Files[i].substr(mp4Files[i].find_last_of('/') + 1, mp4Files[i].find_last_of('.') - mp4Files[i].find_last_of('/') - 1), mp4Buttons[i].x + 20, mp4Buttons[i].y + 30);
 
-        if (isHoveringOverSong[i]){
+        if (isHoveringOverSong[i]) {
             float elapsedTime = ofGetElapsedTimef() - hoverStartTime;
             float progress = elapsedTime / hoverDuration;
             if (progress > 1.0) {
                 progress = 1.0;
             } else {
-                drawHoverProgress(progress, mp4Buttons[i].getCenter().x, mp4Buttons[i].getCenter().y, 30);
+                ofApp::drawHoverProgress(progress, mp4Buttons[i].getCenter().x, mp4Buttons[i].getCenter().y);
             }
         }
     }
