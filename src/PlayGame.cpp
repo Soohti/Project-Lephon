@@ -7,6 +7,7 @@ PlayGame::PlayGame(ofRectangle* handIconRect, std::string mp4Path) {
     videoPlayer.load(mp4Path);
     videoPlayer.setLoopState(OF_LOOP_NONE);
     videoPlayer.play();
+    startTime = ofGetElapsedTimef();
 
     // check for .txt or _gen.txt file
     std::string filename = mp4Path.substr(0, mp4Path.size() - 4);
@@ -61,8 +62,36 @@ PlayGame::~PlayGame() {
 void PlayGame::update() {
     videoPlayer.update();
     if (videoPlayer.getIsMovieDone()) {
-//        nextMode = new MainMenu(handIconRect);
+        // ...existing code...
     }
+    float currentTime = ofGetElapsedTimef() - startTime;
+
+    // Add notes to activeNotes
+    while (nextNoteIndex < allNotes.size()) {
+        Note* note = allNotes[nextNoteIndex];
+        float appearTime = note->time - 1.0f;
+        if (currentTime >= appearTime) {
+            activeNotes.push_back(note);
+            nextNoteIndex++;
+        } else {
+            break; // Since allNotes is sorted, we can stop checking
+        }
+    }
+
+    // Remove notes from activeNotes
+    activeNotes.erase(
+        std::remove_if(activeNotes.begin(), activeNotes.end(),
+            [currentTime](Note* note) {
+                float disappearTime = 0.0f;
+                if (TapNote* tapNote = dynamic_cast<TapNote*>(note)) {
+                    disappearTime = tapNote->time + 0.2f;
+                } else if (HoldNote* holdNote = dynamic_cast<HoldNote*>(note)) {
+                    disappearTime = holdNote->time + holdNote->duration + 0.2f;
+                }
+                return currentTime > disappearTime;
+            }),
+        activeNotes.end()
+    );
 }
 
 void PlayGame::draw() {
@@ -73,5 +102,8 @@ void PlayGame::draw() {
     if(!inFile.is_open()) {
         ofDrawBitmapStringHighlight("Error: No chart file found", ofGetWidth() / 2 - 100, ofGetHeight() / 2, ofColor::red, ofColor::black);
         return;
+    }
+    for (auto note : activeNotes) {
+        note->draw();
     }
 }

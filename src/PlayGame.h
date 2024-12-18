@@ -18,7 +18,10 @@ public:
 private:
     ofVideoPlayer videoPlayer;
     std::vector<Note*> allNotes;
+    std::vector<Note*> activeNotes;
     std::ifstream inFile;
+    float startTime;
+    size_t nextNoteIndex = 0;
 
     ofRectangle* handIconRect;
 };
