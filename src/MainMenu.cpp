@@ -49,8 +49,7 @@ void MainMenu::update()
 
 void MainMenu::draw()
 {
-    ofSetColor(255, 255, 255, 255); // Full opacity
-
+    ofSetColor(ofColor::white); // Full opacity
     // Draw menu items
     ofDrawBitmapString("Welcome to Project Lephon!", ofGetWidth() / 2 - 100, 50);
     ofNoFill();

@@ -23,24 +23,14 @@ SelectSong::SelectSong(ofRectangle* handIconRect, int mode)
             mp4Files.push_back(mp4Path);
             mp4Buttons.push_back(ofRectangle(ofGetWidth() / 2 - buttonWidth / 2, startY + index * (buttonHeight + 100), buttonWidth, buttonHeight));
             isHoveringOverSong.push_back(false);
-
             // Load cover image
             std::string coverImagePath = mp4Path.substr(0, mp4Path.find_last_of('.')) + ".jpg";
             ofImage coverImage;
-            if (coverImage.load(coverImagePath)) {
-                coverImages.push_back(coverImage);
-            } else {
-                // Handle missing cover image (use a default image or a blank image)
-                ofImage defaultImage;
-                defaultImage.allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_COLOR);
-                defaultImage.setColor(ofColor::black);
-                coverImages.push_back(defaultImage);
-            }
-
+            coverImage.load(coverImagePath);
+            coverImages.push_back(coverImage);
             index++;
         }
     }
-
     // Set current background image to the cover image of the first song
     if (!coverImages.empty()) {
         currentBackgroundImage = coverImages[0];
@@ -75,18 +65,17 @@ void SelectSong::update()
 void SelectSong::draw()
 {
     // Draw the current background image
-    ofSetColor(255, 255, 255, 150); // Semi-transparent white
+    ofSetColor(ofColor::white, 150); // Semi-transparent white
     if (currentBackgroundImage.isAllocated()) {
         currentBackgroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
     // Draw song selection buttons
-    ofSetColor(255, 255, 255, 255); // Full opacity
+    ofSetColor(ofColor::white); // Full opacity
     for (size_t i = 0; i < mp4Buttons.size(); ++i) {
         ofNoFill();
         ofSetLineWidth(5);
         ofDrawRectangle(mp4Buttons[i]);
         ofDrawBitmapString(mp4Files[i].substr(mp4Files[i].find_last_of('/') + 1, mp4Files[i].find_last_of('.') - mp4Files[i].find_last_of('/') - 1), mp4Buttons[i].x + 20, mp4Buttons[i].y + 30);
-
         if (isHoveringOverSong[i]) {
             float elapsedTime = ofGetElapsedTimef() - hoverStartTime;
             float progress = elapsedTime / hoverDuration;

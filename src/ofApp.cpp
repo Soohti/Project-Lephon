@@ -83,13 +83,13 @@ void ofApp::update()
 void ofApp::draw()
 {
     if (currentMode->streamWebcam() && camFrame.isAllocated()) {
-        ofSetColor(255, 255, 255, 150); // Semi-transparent white
+        ofSetColor(ofColor::white, 150); // Semi-transparent white
         camFrame.draw(0, 0);
     }
 
     currentMode->draw();
     // Draw hand icon with full opacity
-    ofSetColor(255, 255, 255, 255);
+    ofSetColor(ofColor::white); // Full opacity
     handIcon.draw(handIconRect);
 }
 

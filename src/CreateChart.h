@@ -21,6 +21,7 @@ private:
     float startTime;
     bool holding;
     float holdStartTime;
+    int totalNotes;
     std::ofstream outFile;
 
     ofRectangle* handIconRect;

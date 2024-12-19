@@ -4,10 +4,6 @@
 
 class Note {
 public:
-    float x, y, time, hitDiff;
-    bool hit = false;
-    ofImage noteImage;
-
     Note(float x, float y, float time)
         : x(x)
         , y(y)
@@ -16,11 +12,16 @@ public:
     }
     virtual void update(float currentTime, ofRectangle* handIconRect) = 0;
     virtual void draw(float currentTime) = 0;
-    virtual ~Note() { }
-
-    void drawHit()
+    virtual bool isGreat() = 0;
+    virtual bool isStarted(float currentTime)
     {
-        ofDrawBitmapStringHighlight("HIT!", x, y, ofColor::green, ofColor::black);
+        return currentTime >= time - 1.0f;
+    }
+    virtual bool isFinished(float currentTime) = 0;
+    virtual ~Note() { }
+    void drawGreat()
+    {
+        ofDrawBitmapStringHighlight("GREAT!", x, y, ofColor::green, ofColor::black);
     }
     void drawMiss()
     {
@@ -36,6 +37,11 @@ public:
     {
         return handIconRect->intersects(ofRectangle(x - noteImage.getWidth() / 2, y - noteImage.getHeight() / 2, noteImage.getWidth(), noteImage.getHeight()));
     }
+
+protected:
+    float x, y, time, hitDiff;
+    bool hit = false;
+    ofImage noteImage;
 };
 
 class TapNote : public Note {
@@ -59,9 +65,9 @@ public:
     void draw(float currentTime) override
     {
         float timeDiff = currentTime - time;
-        if (hit) {
+        if (isGreat()) {
             if (timeDiff - hitDiff <= 0.2f) {
-                drawHit();
+                drawGreat();
             }
         } else {
             if (timeDiff >= -1.0f && timeDiff <= 0.2f) {
@@ -71,13 +77,18 @@ public:
             }
         }
     }
+    bool isGreat() override
+    {
+        return hit;
+    }
+    bool isFinished(float currentTime) override
+    {
+        return currentTime > time + 0.4f;
+    }
 };
 
 class HoldNote : public Note {
 public:
-    float duration;
-    float holdTime = 0.0f;
-
     HoldNote(float x, float y, float time, float duration)
         : Note(x, y, time)
         , duration(duration)
@@ -115,11 +126,23 @@ public:
                 }
             }
         } else { // duration < timeDiff <= duration + 0.2
-            if (holdTime >= 0.75f * duration) {
-                drawHit();
+            if (isGreat()) {
+                drawGreat();
             } else {
                 drawMiss();
             }
         }
     }
+    bool isGreat() override
+    {
+        return holdTime >= 0.75f * duration;
+    }
+    bool isFinished(float currentTime) override
+    {
+        return currentTime > time + duration + 0.2f;
+    }
+
+private:
+    float duration;
+    float holdTime = 0.0f;
 };
