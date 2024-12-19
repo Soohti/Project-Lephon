@@ -14,7 +14,7 @@ Project Lephon is an interactive rhythm game developed using openFrameworks. It 
 - **Chart Creation Mode**: Allows users to create custom note charts by recording their hand movements while watching a video.
 
 ## Demo
-
+https://github.com/user-attachments/assets/8889f7b8-b901-40df-af9d-44d51a198b3b
 
 ## Build Instructions
 
