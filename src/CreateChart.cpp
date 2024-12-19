@@ -39,11 +39,13 @@ void CreateChart::draw()
 void CreateChart::keyPressed(int key)
 {
     if (key == ' ') {
+        // Begin of hold note
         if (!holding) {
             holding = true;
             holdStartTime = ofGetElapsedTimef() - startTime;
         }
     } else {
+        // Tap note
         float centerX = handIconRect->getX() + handIconRect->getWidth() / 2;
         float centerY = handIconRect->getY() + handIconRect->getHeight() / 2;
         outFile << "1 " << centerX << " " << centerY << " " << ofGetElapsedTimef() - startTime << std::endl;
@@ -54,6 +56,7 @@ void CreateChart::keyPressed(int key)
 void CreateChart::keyReleased(int key)
 {
     if (key == ' ') {
+        // End of hold note
         float centerX = handIconRect->getX() + handIconRect->getWidth() / 2;
         float centerY = handIconRect->getY() + handIconRect->getHeight() / 2;
         outFile << "2 " << centerX << " " << centerY << " " << holdStartTime << " " << ofGetElapsedTimef() - startTime - holdStartTime << std::endl;

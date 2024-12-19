@@ -6,7 +6,7 @@
 PlayGame::PlayGame(ofRectangle* handIconRect, std::string mp4Path)
     : handIconRect(handIconRect)
 {
-    // check for .txt or _gen.txt file
+    // Check for .txt or _gen.txt file
     std::string filename = mp4Path.substr(0, mp4Path.size() - 4);
     std::vector<std::string> potentialPaths = { filename + "_gen.txt", filename + ".txt" };
     for (const auto& path : potentialPaths) {
@@ -15,6 +15,7 @@ PlayGame::PlayGame(ofRectangle* handIconRect, std::string mp4Path)
             break;
         }
     }
+    // Load notes from file
     if (inFile.is_open()) {
         std::string line;
         while (std::getline(inFile, line)) {
@@ -32,6 +33,8 @@ PlayGame::PlayGame(ofRectangle* handIconRect, std::string mp4Path)
             }
         }
     }
+    // Start video
+    // must be called at the end to avoid delays
     videoPlayer.load(mp4Path);
     videoPlayer.setLoopState(OF_LOOP_NONE);
     videoPlayer.play();
@@ -93,9 +96,11 @@ void PlayGame::update()
 void PlayGame::draw()
 {
     ofSetColor(ofColor::white, 150); // Semi-transparent white
+    // Draw video
     if (videoPlayer.isLoaded()) {
         videoPlayer.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
+    // Check if chart file is missing
     if (!inFile.is_open()) {
         ofDrawBitmapStringHighlight("Error: No chart file found", ofGetWidth() / 2 - 100, ofGetHeight() / 2, ofColor::red, ofColor::black);
         return;

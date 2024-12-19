@@ -55,6 +55,7 @@ public:
     void update(float currentTime, ofRectangle* handIconRect) override
     {
         float timeDiff = currentTime - time;
+        // note judgment window: -0.2 < timeDiff < 0.2
         if (timeDiff >= -0.2f && timeDiff <= 0.2f) {
             if (!hit && isHit(handIconRect)) {
                 hitDiff = timeDiff;
