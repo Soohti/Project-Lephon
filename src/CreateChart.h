@@ -1,3 +1,6 @@
+#ifndef CREATECHART_H
+#define CREATECHART_H
+
 #pragma once
 #include "BaseMode.h"
 
@@ -26,3 +29,5 @@ private:
 
     ofRectangle* handIconRect;
 };
+
+#endif // CREATECHART_H

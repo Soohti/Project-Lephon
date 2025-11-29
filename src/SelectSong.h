@@ -1,3 +1,6 @@
+#ifndef SELECTSONG_H
+#define SELECTSONG_H
+
 #pragma once
 #include "BaseMode.h"
 
@@ -23,3 +26,5 @@ private:
     ofRectangle* handIconRect;
     int mode;
 };
+
+#endif // SELECTSONG_H

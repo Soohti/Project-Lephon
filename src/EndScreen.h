@@ -1,3 +1,6 @@
+#ifndef ENDSCREEN_H
+#define ENDSCREEN_H
+
 #pragma once
 #include "BaseMode.h"
 
@@ -14,3 +17,5 @@ private:
     std::string mp4Path;
     ofImage background;
 };
+
+#endif // ENDSCREEN_H

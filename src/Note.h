@@ -1,3 +1,6 @@
+#ifndef NOTE_H
+#define NOTE_H
+
 #pragma once
 #include "ofApp.h"
 #include "ofMain.h"
@@ -147,3 +150,5 @@ private:
     float duration;
     float holdTime = 0.0f;
 };
+
+#endif // NOTE_H

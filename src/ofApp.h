@@ -1,3 +1,6 @@
+#ifndef OFAPP_H
+#define OFAPP_H
+
 #pragma once
 
 #include "BaseMode.h"
@@ -41,3 +44,5 @@ private:
 
     BaseMode* currentMode;
 };
+
+#endif // OFAPP_H

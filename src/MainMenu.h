@@ -1,3 +1,6 @@
+#ifndef MAINMENU_H
+#define MAINMENU_H
+
 #pragma once
 #include "BaseMode.h"
 
@@ -20,3 +23,5 @@ private:
 
     ofRectangle* handIconRect;
 };
+
+#endif // MAINMENU_H

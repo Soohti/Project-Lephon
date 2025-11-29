@@ -1,3 +1,6 @@
+#ifndef PLAYGAME_H
+#define PLAYGAME_H
+
 #pragma once
 #include "BaseMode.h"
 #include "Note.h"
@@ -25,3 +28,5 @@ private:
 
     ofRectangle* handIconRect;
 };
+
+#endif // PLAYGAME_H

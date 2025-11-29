@@ -1,3 +1,6 @@
+#ifndef BASEMODE_H
+#define BASEMODE_H
+
 #pragma once
 #include "ofMain.h"
 
@@ -18,3 +21,5 @@ public:
 protected:
     BaseMode* nextMode;
 };
+
+#endif // BASEMODE_H
